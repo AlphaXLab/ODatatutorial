@@ -4,11 +4,6 @@
 
 In order to test this project out, please use Docker for postgres
 
-**References**
-
-https://dev.to/berviantoleo/odata-with-net-6-5e1p
-https://www.entityframeworktutorial.net/efcore/configure-one-to-many-relationship-using-fluent-api-in-ef-core.aspx
-https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
 
 **Steps**
 
@@ -21,3 +16,13 @@ https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-do
 - You can start running the project
 - For the testing import the postman collection named "ODatatutorial.postman_collection.json" into your postman
 - Change the host and port of the OData API Endpoint if necessary
+
+
+
+**References**
+
+https://dev.to/berviantoleo/odata-with-net-6-5e1p \
+\
+https://www.entityframeworktutorial.net/efcore/configure-one-to-many-relationship-using-fluent-api-in-ef-core.aspx \
+\
+https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
