@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{1C6ABEFB-458F-40F8-994B-484CF2BEFC7C}|https">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ODataTutorial/ODataTutorial.csproj">
+    <Files>
+      <File FileName="ODataTutorial/ODataTutorial.csproj" Line="32" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ODataTutorial" expanded="True">
+            <Node name="ODataTutorial" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ODataTutorial PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
