@@ -61,6 +61,62 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Child Entity Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5146/v1/Todos?$expand=notes($filter=CreatedBy eq 'sithu')",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5146",
+					"path": [
+						"v1",
+						"Todos"
+					],
+					"query": [
+						{
+							"key": "$expand",
+							"value": "notes($filter=CreatedBy eq 'sithu')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter by Attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5146/v1/Todos?$expand=notes&$filter=contains(item,'Mahar')",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5146",
+					"path": [
+						"v1",
+						"Todos"
+					],
+					"query": [
+						{
+							"key": "$expand",
+							"value": "notes"
+						},
+						{
+							"key": "$filter",
+							"value": "contains(item,'Mahar')"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

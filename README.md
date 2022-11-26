@@ -1,12 +1,12 @@
 # ODatatutorial
 
-### Recommendation
+## Recommendation
 
 In order to test this project out, please use Docker for postgres
 <br >
 <br >
 
-### Steps
+## Steps
 
 - First create a database in **PostgresSQL**
 - Run "`cd ODataTutorial`" note this is where solution file is existed
@@ -20,10 +20,12 @@ In order to test this project out, please use Docker for postgres
 <br >
 <br >
 
-**References**
+## References
 
 https://dev.to/berviantoleo/odata-with-net-6-5e1p   
 \
 https://www.entityframeworktutorial.net/efcore/configure-one-to-many-relationship-using-fluent-api-in-ef-core.aspx   
 \
-https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
+https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli  
+\
+https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview
