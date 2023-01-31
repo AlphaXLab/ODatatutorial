@@ -44,11 +44,6 @@
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.csproj.CoreCompileInputs.cache
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.MvcApplicationPartsAssemblyInfo.cs
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.MvcApplicationPartsAssemblyInfo.cache
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.ODataTutorial.Microsoft.AspNetCore.StaticWebAssets.props
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.build.ODataTutorial.props
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.ODataTutorial.props
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.ODataTutorial.props
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets.pack.json
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets.build.json
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets.development.json
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/scopedcss/bundle/ODataTutorial.styles.css
