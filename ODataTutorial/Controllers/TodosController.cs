@@ -8,95 +8,93 @@ using Microsoft.EntityFrameworkCore;
 using ODataTutorial.Models;
 using ODataTutorial.Data;
 
-namespace ODataTutorial.Controllers
+namespace ODataTutorial.Controllers;
+public class TodosController : ODataController
 {
-    public class TodosController : ODataController
+    private readonly DataContext _db;
+
+    private readonly ILogger<TodosController> _logger;
+
+    public TodosController(DataContext dbContext, ILogger<TodosController> logger)
     {
-        private readonly DataContext _db;
+        _logger = logger;
+        _db = dbContext;
+    }
 
-        private readonly ILogger<TodosController> _logger;
+    [EnableQuery(PageSize = 15)]
+    public IQueryable<Todo> Get()
+    {
+        return _db.Todos;
+    }
 
-        public TodosController(DataContext dbContext, ILogger<TodosController> logger)
+    [EnableQuery]
+    public SingleResult<Todo> Get([FromODataUri] Guid key)
+    {
+        var result = _db.Todos.Where(c => c.Id == key);
+        return SingleResult.Create(result);
+    }
+
+    [EnableQuery]
+    public async Task<IActionResult> Post([FromBody] Todo todo)
+    {
+        if (!ModelState.IsValid)
         {
-            _logger = logger;
-            _db = dbContext;
+            return BadRequest(ModelState);
         }
 
-        [EnableQuery(PageSize = 15)]
-        public IQueryable<Todo> Get()
+        _db.Todos.Add(todo);
+        await _db.SaveChangesAsync();
+        return Created(todo);
+    }
+
+    [EnableQuery]
+    public async Task<IActionResult> Patch([FromODataUri] Guid key, Delta<Todo> Todo)
+    {
+        if (!ModelState.IsValid)
         {
-            return _db.Todos;
+            return BadRequest(ModelState);
+        }
+        var existingTodo = await _db.Todos.FindAsync(key);
+        if (existingTodo == null)
+        {
+            return NotFound();
         }
 
-        [EnableQuery]
-        public SingleResult<Todo> Get([FromODataUri] Guid key)
+        Todo.Patch(existingTodo);
+        try
         {
-            var result = _db.Todos.Where(c => c.Id == key);
-            return SingleResult.Create(result);
-        }
-
-        [EnableQuery]
-        public async Task<IActionResult> Post([FromBody] Todo todo)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _db.Todos.Add(todo);
             await _db.SaveChangesAsync();
-            return Created(todo);
         }
-
-        [EnableQuery]
-        public async Task<IActionResult> Patch([FromODataUri] Guid key, Delta<Todo> Todo)
+        catch (DbUpdateConcurrencyException)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var existingTodo = await _db.Todos.FindAsync(key);
-            if (existingTodo == null)
+            if (!TodoExists(key))
             {
                 return NotFound();
             }
-
-            Todo.Patch(existingTodo);
-            try
+            else
             {
-                await _db.SaveChangesAsync();
+                throw;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return Updated(existingTodo);
         }
+        return Updated(existingTodo);
+    }
 
-        [EnableQuery]
-        public async Task<IActionResult> Delete([FromODataUri] Guid key)
+    [EnableQuery]
+    public async Task<IActionResult> Delete([FromODataUri] Guid key)
+    {
+        var existingTodo = await _db.Todos.FindAsync(key);
+        if (existingTodo == null)
         {
-            var existingTodo = await _db.Todos.FindAsync(key);
-            if (existingTodo == null)
-            {
-                return NotFound();
-            }
-
-            _db.Todos.Remove(existingTodo);
-            await _db.SaveChangesAsync();
-            return StatusCode(StatusCodes.Status204NoContent);
+            return NotFound();
         }
 
-        private bool TodoExists(Guid key)
-        {
-            return _db.Todos.Any(p => p.Id == key);
-        }
+        _db.Todos.Remove(existingTodo);
+        await _db.SaveChangesAsync();
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
+
+    private bool TodoExists(Guid key)
+    {
+        return _db.Todos.Any(p => p.Id == key);
     }
 }

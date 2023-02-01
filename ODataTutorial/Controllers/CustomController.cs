@@ -1,27 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData.Deltas;
-using Microsoft.AspNetCore.OData.Formatter;
-using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Results;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
-using Microsoft.EntityFrameworkCore;
-using ODataTutorial.Models;
 using ODataTutorial.Data;
 
-namespace ODataTutorial.Controllers
+namespace ODataTutorial.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class CustomController : ControllerBase
 {
-    public class CustomController : ODataController
+    private readonly DataContext _db;
+
+    private readonly ILogger<TodosController> _logger;
+
+    public CustomController(DataContext dbContext, ILogger<TodosController> logger)
     {
-        private readonly DataContext _db;
+        _logger = logger;
+        _db = dbContext;
+    }
 
-        private readonly ILogger<TodosController> _logger;
-
-        public CustomController(DataContext dbContext, ILogger<TodosController> logger)
-        {
-            _logger = logger;
-            _db = dbContext;
-        }
-
-
+    [HttpGet(Name = "GetWeatherForecast")]
+    public String Get()
+    {
+        // business logic
+        return "Business logic applied api return example";
     }
 }

@@ -8,96 +8,94 @@ using Microsoft.EntityFrameworkCore;
 using ODataTutorial.Models;
 using ODataTutorial.Data;
 
+namespace ODataTutorial.Controllers;
 
-namespace ODataTutorial.Controllers
+public class NotesController : ODataController
 {
-    public class NotesController : ODataController
+    private readonly DataContext _db;
+
+    private readonly ILogger<NotesController> _logger;
+
+    public NotesController(DataContext dbContext, ILogger<NotesController> logger)
     {
-        private readonly DataContext _db;
+        _logger = logger;
+        _db = dbContext;
+    }
 
-        private readonly ILogger<NotesController> _logger;
+    [EnableQuery(PageSize = 15)]
+    public IQueryable<Note> Get()
+    {
+        return _db.Notes;
+    }
 
-        public NotesController(DataContext dbContext, ILogger<NotesController> logger)
+    [EnableQuery]
+    public SingleResult<Note> Get([FromODataUri] Guid key)
+    {
+        var result = _db.Notes.Where(c => c.Id == key);
+        return SingleResult.Create(result);
+    }
+
+    [EnableQuery]
+    public async Task<IActionResult> Post([FromBody] Note note)
+    {
+        if (!ModelState.IsValid)
         {
-            _logger = logger;
-            _db = dbContext;
+            return BadRequest(ModelState);
         }
 
-        [EnableQuery(PageSize = 15)]
-        public IQueryable<Note> Get()
+        _db.Notes.Add(note);
+        await _db.SaveChangesAsync();
+        return Created(note);
+    }
+
+    [EnableQuery]
+    public async Task<IActionResult> Patch([FromODataUri] Guid key, Delta<Note> note)
+    {
+        if (!ModelState.IsValid)
         {
-            return _db.Notes;
+            return BadRequest(ModelState);
+        }
+        var existingNote = await _db.Notes.FindAsync(key);
+        if (existingNote == null)
+        {
+            return NotFound();
         }
 
-        [EnableQuery]
-        public SingleResult<Note> Get([FromODataUri] Guid key)
+        note.Patch(existingNote);
+        try
         {
-            var result = _db.Notes.Where(c => c.Id == key);
-            return SingleResult.Create(result);
-        }
-
-        [EnableQuery]
-        public async Task<IActionResult> Post([FromBody] Note note)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _db.Notes.Add(note);
             await _db.SaveChangesAsync();
-            return Created(note);
         }
-
-        [EnableQuery]
-        public async Task<IActionResult> Patch([FromODataUri] Guid key, Delta<Note> note)
+        catch (DbUpdateConcurrencyException)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var existingNote = await _db.Notes.FindAsync(key);
-            if (existingNote == null)
+            if (!NoteExists(key))
             {
                 return NotFound();
             }
-
-            note.Patch(existingNote);
-            try
+            else
             {
-                await _db.SaveChangesAsync();
+                throw;
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!NoteExists(key))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return Updated(existingNote);
         }
+        return Updated(existingNote);
+    }
 
-        [EnableQuery]
-        public async Task<IActionResult> Delete([FromODataUri] Guid key)
+    [EnableQuery]
+    public async Task<IActionResult> Delete([FromODataUri] Guid key)
+    {
+        var existingNote = await _db.Notes.FindAsync(key);
+        if (existingNote == null)
         {
-            var existingNote = await _db.Notes.FindAsync(key);
-            if (existingNote == null)
-            {
-                return NotFound();
-            }
-
-            _db.Notes.Remove(existingNote);
-            await _db.SaveChangesAsync();
-            return StatusCode(StatusCodes.Status204NoContent);
+            return NotFound();
         }
 
-        private bool NoteExists(Guid key)
-        {
-            return _db.Notes.Any(p => p.Id == key);
-        }
+        _db.Notes.Remove(existingNote);
+        await _db.SaveChangesAsync();
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
+
+    private bool NoteExists(Guid key)
+    {
+        return _db.Notes.Any(p => p.Id == key);
     }
 }
