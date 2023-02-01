@@ -14,10 +14,12 @@ static IEdmModel GetEdmModel()
 }
 
 var builder = WebApplication.CreateBuilder(args);
+string? connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(
-    options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
+    options => options.UseNpgsql(connectionString)
+    // options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
 );
 
 builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("v1", GetEdmModel()).Filter().Select().Expand());
