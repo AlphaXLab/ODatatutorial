@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ODataTutorial.Data;
-
+using System.Linq;
+using ODataTutorial.Models;
+using ODataTutorial.Data;
 namespace ODataTutorial.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("v1/[controller]")]
 public class CustomController : ControllerBase
 {
     private readonly DataContext _db;
@@ -17,10 +19,24 @@ public class CustomController : ControllerBase
         _db = dbContext;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
-    public String Get()
+    [Route("GetNotesByUser")]
+    [HttpGet]
+    public ActionResult<List<Note>> GetNotesByUser(String username)
     {
-        // business logic
-        return "Business logic applied api return example";
+        IList<Note> notes = null;
+
+        notes = _db.Notes.Select(n => new Note()
+        {
+            Id = n.Id,
+            MessageNote = n.MessageNote,
+            CreatedAt = n.CreatedAt
+        }).ToList<Note>();
+
+        if (notes.Count == 0)
+        {
+            return NotFound();
+        }
+
+        return Ok(notes);
     }
 }

@@ -12,13 +12,8 @@ services:
     ports:
       # - '${APP_PORT:-80}:80'
       - '80:80'
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:80
-      CONNECTION_STRING: Server=mh-labs-instance-1.c4kpuy5wuh6q.us-east-1.rds.amazonaws.com,5432;User Id=postgres;Password=Q5xqo8nrCj56NWIXLuer;Database=odatatutorial
-      # ASPNETCORE_URLS=https://+:443;http://+:80
-      # ASPNETCORE_Kestrel__Certificates__Default__Password=password
-      # ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    env_file:
+      - .env
     restart: always
     networks:
       - dotnet-network
