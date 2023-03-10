@@ -22,7 +22,7 @@ builder.Services.AddDbContext<DataContext>(
     // options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))
 );
 
-builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("v1", GetEdmModel()).Filter().Select().Expand());
+builder.Services.AddControllers().AddOData(opt => opt.AddRouteComponents("v1", GetEdmModel()).Filter().Count().OrderBy().Select().Expand());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
