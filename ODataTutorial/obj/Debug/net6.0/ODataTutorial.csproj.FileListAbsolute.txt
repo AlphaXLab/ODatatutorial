@@ -53,7 +53,3 @@
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.pdb
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.genruntimeconfig.cache
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ref/ODataTutorial.dll
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/bin/Debug/net6.0/DotNetEnv.dll
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/bin/Debug/net6.0/Microsoft.Extensions.Configuration.dll
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/bin/Debug/net6.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll
-/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/bin/Debug/net6.0/Sprache.dll

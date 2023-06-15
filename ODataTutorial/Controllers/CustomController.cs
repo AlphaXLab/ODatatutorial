@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using ODataTutorial.Data;
+using System.Linq;
 using ODataTutorial.Models;
-
+using ODataTutorial.Data;
 namespace ODataTutorial.Controllers;
+
 [ApiController]
 [Route("v1/[controller]")]
 public class CustomController : ControllerBase
