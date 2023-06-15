@@ -14,6 +14,11 @@ static IEdmModel GetEdmModel()
 }
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddEnvironmentVariables();
+
+DotNetEnv.Env.Load();
+
 string? connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
 // Add services to the container.
