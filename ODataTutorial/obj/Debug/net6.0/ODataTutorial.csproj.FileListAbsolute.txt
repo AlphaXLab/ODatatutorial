@@ -53,3 +53,8 @@
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.pdb
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ODataTutorial.genruntimeconfig.cache
 /Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/ref/ODataTutorial.dll
+/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.ODataTutorial.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.build.ODataTutorial.props
+/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.ODataTutorial.props
+/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.ODataTutorial.props
+/Users/kyawsithu/Developer/Codes/ODataTutorial/ODataTutorial/obj/Debug/net6.0/staticwebassets.pack.json

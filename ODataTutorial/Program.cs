@@ -4,6 +4,7 @@ using ODataTutorial.Data;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
+using Sentry;
 
 static IEdmModel GetEdmModel()
 {
@@ -13,6 +14,16 @@ static IEdmModel GetEdmModel()
     return builder.GetEdmModel();
 }
 
+SentrySdk.Init(options =>
+{
+    options.Dsn = "https://3ba5e205db034cd5867b45a18b0d2b69@o4505051667562496.ingest.sentry.io/4505170225201152";
+    options.Debug = true;
+    options.AutoSessionTracking = true;
+    options.IsGlobalModeEnabled = true;
+    options.EnableTracing = true;
+});
+
+DotNetEnv.Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 string? connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
